@@ -9,6 +9,8 @@ overlay
 br_netfilter
 EOF
 
+sleep 2
+
 
 # Disable swap if not on a cloud instance - done anyway
 
@@ -21,6 +23,8 @@ sudo modprobe overlay
 
 sudo modprobe br_netfilter
 
+sleep 5
+
 
 # Update sysctl to load iptables and ipforwarding
 
@@ -32,10 +36,12 @@ EOF
 
 sudo sysctl --system
 
-#
+ sleep 5
 # Install some necessary software
 
 sudo apt-get install curl apt-transport-https vim git wget  software-properties-common lsb-release ca-certificates  -y
+
+sleep 5
 
 # Install and configure containerd
 
@@ -76,7 +82,7 @@ sudo systemctl enable --now containerd
 
 sudo systemctl restart containerd
 
-
+sleep 5
 # Add the Kubernetes repo
 
 sudo sh -c "echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' >> /etc/apt/sources.list.d/kubernetes.list"
@@ -93,6 +99,8 @@ sudo sh -c "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-
 sudo apt-get update
 
 sudo apt-get install -y kubeadm=1.27.1-00 kubelet=1.27.1-00 kubectl=1.27.1-00
+
+sleep 5
 
 sudo apt-mark hold kubelet kubeadm kubectl
 
